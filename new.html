@@ -1,0 +1,1788 @@
+<!doctype html>
+<html lang="sk" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Burger Lab New | Poctivé burgre z čerstvých surovín</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              limeAccent: "#b2d74b",
+              limeBright: "#b8de56",
+              oliveAccent: "#547211",
+              oliveMedium: "#628316",
+              oliveHover: "#425a0d",
+              darkCharcoal: "#1a1f14",
+              creamCard: "#f8faf5",
+            },
+            fontFamily: {
+              sans: ['"Plus Jakarta Sans"', "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <!-- FontAwesome Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="new.css" />
+  </head>
+  <body
+    class="bg-white text-darkCharcoal font-sans antialiased selection:bg-limeAccent selection:text-darkCharcoal"
+  >
+    <!-- Header / Navigation -->
+    <header
+      class="fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-b border-oliveAccent/10 transition-all"
+    >
+      <div
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between"
+      >
+        <!-- Brand Logo -->
+        <a href="#" class="flex items-center space-x-3 group">
+          <div
+            class="w-11 h-11 rounded-2xl bg-oliveAccent flex items-center justify-center text-limeBright shadow-md group-hover:rotate-6 transition-transform duration-300"
+          >
+            <i class="fa-solid fa-burger text-xl"></i>
+          </div>
+          <div class="flex flex-col">
+            <span
+              class="text-xl font-extrabold tracking-tight text-darkCharcoal leading-none"
+              >BURGER <span class="text-oliveAccent">LAB</span></span
+            >
+            <span
+              class="text-[11px] font-bold tracking-widest text-oliveMedium uppercase mt-1"
+              >Craft Burgers & Street Food</span
+            >
+          </div>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav
+          class="hidden md:flex items-center space-x-8 font-semibold text-sm text-darkCharcoal/80"
+        >
+          <a href="#menu" class="hover:text-oliveAccent transition-colors"
+            >Menu</a
+          >
+          <a href="#o-nas" class="hover:text-oliveAccent transition-colors"
+            >O nás</a
+          >
+          <a href="#builder" class="hover:text-oliveAccent transition-colors"
+            >Vlastný burger</a
+          >
+          <a href="#rezervacia" class="hover:text-oliveAccent transition-colors"
+            >Rezervácia</a
+          >
+        </nav>
+
+        <!-- Cart & Mobile Trigger -->
+        <div class="flex items-center space-x-3">
+          <button
+            onclick="toggleCart()"
+            class="inline-flex items-center space-x-2.5 px-5 py-2.5 rounded-2xl bg-oliveAccent text-white font-bold text-sm hover:bg-oliveHover shadow-md hover:shadow-lg transition-all active:scale-95"
+          >
+            <i class="fa-solid fa-bag-shopping text-limeBright"></i>
+            <span>Objednať</span>
+            <span
+              id="cart-badge"
+              class="ml-1 px-2 py-0.5 text-xs font-extrabold rounded-full bg-limeBright text-darkCharcoal"
+              >0</span
+            >
+          </button>
+          <button
+            id="mobile-menu-btn"
+            class="md:hidden p-2.5 rounded-2xl bg-creamCard text-darkCharcoal hover:bg-limeAccent/30 transition-colors"
+            aria-label="Menu"
+          >
+            <i class="fa-solid fa-bars text-lg"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Dropdown -->
+      <div
+        id="mobile-menu"
+        class="hidden md:hidden bg-white border-b border-oliveAccent/10 px-6 py-5 space-y-3 shadow-xl"
+      >
+        <a
+          href="#menu"
+          class="block py-2 font-bold text-darkCharcoal hover:text-oliveAccent mobile-link"
+          >Menu</a
+        >
+        <a
+          href="#o-nas"
+          class="block py-2 font-bold text-darkCharcoal hover:text-oliveAccent mobile-link"
+          >O nás</a
+        >
+        <a
+          href="#builder"
+          class="block py-2 font-bold text-darkCharcoal hover:text-oliveAccent mobile-link"
+          >Vlastný burger</a
+        >
+        <a
+          href="#rezervacia"
+          class="block py-2 font-bold text-darkCharcoal hover:text-oliveAccent mobile-link"
+          >Rezervácia</a
+        >
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 md:pt-40 md:pb-28 relative overflow-hidden">
+      <!-- Soft Ambient Blobs -->
+      <div
+        class="absolute top-24 right-0 w-[30rem] h-[30rem] bg-limeAccent/20 rounded-full blur-3xl -z-10 pointer-events-none"
+      ></div>
+      <div
+        class="absolute bottom-0 left-0 w-[24rem] h-[24rem] bg-oliveAccent/10 rounded-full blur-3xl -z-10 pointer-events-none"
+      ></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div
+          class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center"
+        >
+          <!-- Hero Copy -->
+          <div class="lg:col-span-6 space-y-6 text-center lg:text-left">
+            <div
+              class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-creamCard border border-limeAccent text-oliveAccent font-bold text-xs uppercase tracking-wider shadow-sm"
+            >
+              <span
+                class="w-2 h-2 rounded-full bg-oliveAccent animate-pulse"
+              ></span>
+              <span>Poctivý street food • Bratislava</span>
+            </div>
+
+            <h1
+              class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-darkCharcoal tracking-tight leading-[1.12]"
+            >
+              Poctivé burgre z
+              <span class="text-oliveAccent relative inline-block">
+                čerstvých surovín
+                <svg
+                  class="w-full h-3 absolute -bottom-1 left-0 text-limeAccent"
+                  viewBox="0 0 200 12"
+                  fill="none"
+                  preserveAspectRatio="none"
+                >
+                  <path
+                    d="M2 9C55 2 145 2 198 9"
+                    stroke="currentColor"
+                    stroke-width="5"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </span>
+            </h1>
+
+            <p
+              class="text-base sm:text-lg text-darkCharcoal/75 max-w-xl mx-auto lg:mx-0 leading-relaxed"
+            >
+              Šťavnaté 100% slovenské hovädzie mäso grilované na priamom ohni,
+              každé ráno pečené maslové briošky a poctivé domáce omáčky bez
+              polotovarov.
+            </p>
+
+            <div
+              class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2"
+            >
+              <a
+                href="#menu"
+                class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-oliveAccent text-white font-bold text-base hover:bg-oliveHover shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5 text-center"
+              >
+                Pozrieť menu
+              </a>
+              <a
+                href="#rezervacia"
+                class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-creamCard border-2 border-limeAccent text-darkCharcoal font-bold text-base hover:bg-limeAccent/30 transition-all text-center flex items-center justify-center space-x-2"
+              >
+                <i class="fa-regular fa-calendar-check text-oliveAccent"></i>
+                <span>Rezervovať stôl</span>
+              </a>
+            </div>
+
+            <!-- Trust Badges -->
+            <div
+              class="grid grid-cols-3 gap-4 pt-8 border-t border-gray-100 max-w-md mx-auto lg:mx-0"
+            >
+              <div>
+                <div class="text-2xl font-extrabold text-oliveAccent">100%</div>
+                <div class="text-xs font-semibold text-darkCharcoal/60 mt-0.5">
+                  Slovenské hovädzie
+                </div>
+              </div>
+              <div>
+                <div class="text-2xl font-extrabold text-oliveAccent">
+                  Každé ráno
+                </div>
+                <div class="text-xs font-semibold text-darkCharcoal/60 mt-0.5">
+                  Čerstvé briošky
+                </div>
+              </div>
+              <div>
+                <div class="text-2xl font-extrabold text-oliveAccent">
+                  4.9 ★
+                </div>
+                <div class="text-xs font-semibold text-darkCharcoal/60 mt-0.5">
+                  Hodnotenie hostí
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hero Visual Card -->
+          <div class="lg:col-span-6">
+            <div
+              class="relative rounded-3xl bg-creamCard p-4 sm:p-6 border border-oliveAccent/15 shadow-2xl"
+            >
+              <div
+                class="relative rounded-2xl overflow-hidden aspect-[4/3] bg-darkCharcoal"
+              >
+                <img
+                  src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1000&q=85"
+                  onerror="
+                    this.src =
+                      'https://placehold.co/800x600/547211/b8de56?text=Burger+Lab+Signature'
+                  "
+                  alt="Cheddar Bacon Burger"
+                  class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                />
+                <!-- Floating Tag Top Left -->
+                <div
+                  class="absolute top-4 left-4 px-3.5 py-1.5 rounded-xl bg-white/95 backdrop-blur-md text-darkCharcoal font-extrabold text-xs shadow-md flex items-center space-x-2"
+                >
+                  <span class="w-2 h-2 rounded-full bg-limeBright"></span>
+                  <span>NAŠA ŠPECIALITA • BESTSELLER</span>
+                </div>
+              </div>
+
+              <!-- Bottom Quick Order Strip -->
+              <div
+                class="mt-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 px-2"
+              >
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <h3 class="text-lg font-extrabold text-darkCharcoal">
+                      Cheddar Bacon
+                    </h3>
+                    <span
+                      class="px-2.5 py-0.5 rounded-lg bg-limeAccent/40 text-oliveAccent font-extrabold text-xs"
+                      >10,90 €</span
+                    >
+                  </div>
+                  <p class="text-xs text-darkCharcoal/70 mt-1">
+                    180g šťavnaté hovädzie, dvojitý cheddar, chrumkavá slanina,
+                    karamelizovaná cibuľka, BBQ dresing
+                  </p>
+                </div>
+                <button
+                  onclick="addToCart('Cheddar Bacon', 10.9)"
+                  class="shrink-0 px-5 py-3 rounded-2xl bg-limeBright text-darkCharcoal font-extrabold text-sm hover:bg-limeAccent transition-all shadow-sm flex items-center justify-center space-x-2"
+                >
+                  <i class="fa-solid fa-plus"></i>
+                  <span>Pridať do košíka</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="py-20 bg-creamCard">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto space-y-3 mb-12">
+          <span
+            class="inline-block px-3.5 py-1 rounded-full bg-limeAccent/40 text-oliveAccent text-xs font-extrabold uppercase tracking-widest"
+            >Čerstvá ponuka</span
+          >
+          <h2
+            class="text-3xl sm:text-4xl font-extrabold text-darkCharcoal tracking-tight"
+          >
+            Naše Burgre & Prílohy
+          </h2>
+          <p class="text-darkCharcoal/70 text-sm sm:text-base">
+            Pripravujeme ich vždy čerstvé na objednávku z poctivých lokálnych
+            surovín, chrumkavej zeleniny a domácich dresingov.
+          </p>
+        </div>
+
+        <!-- Category Filter Pills -->
+        <div class="flex flex-wrap items-center justify-center gap-2.5 mb-12">
+          <button
+            onclick="filterMenu('all')"
+            data-filter="all"
+            class="filter-btn px-5 py-2.5 rounded-2xl text-sm font-bold bg-oliveAccent text-white shadow-sm transition-all"
+          >
+            Všetky
+          </button>
+          <button
+            onclick="filterMenu('beef')"
+            data-filter="beef"
+            class="filter-btn px-5 py-2.5 rounded-2xl text-sm font-bold bg-white text-darkCharcoal hover:bg-limeAccent/30 border border-oliveAccent/10 transition-all"
+          >
+            Hovädzie
+          </button>
+          <button
+            onclick="filterMenu('chicken')"
+            data-filter="chicken"
+            class="filter-btn px-5 py-2.5 rounded-2xl text-sm font-bold bg-white text-darkCharcoal hover:bg-limeAccent/30 border border-oliveAccent/10 transition-all"
+          >
+            Kuracie
+          </button>
+          <button
+            onclick="filterMenu('vege')"
+            data-filter="vege"
+            class="filter-btn px-5 py-2.5 rounded-2xl text-sm font-bold bg-white text-darkCharcoal hover:bg-limeAccent/30 border border-oliveAccent/10 transition-all"
+          >
+            Vegetariánske
+          </button>
+          <button
+            onclick="filterMenu('sides')"
+            data-filter="sides"
+            class="filter-btn px-5 py-2.5 rounded-2xl text-sm font-bold bg-white text-darkCharcoal hover:bg-limeAccent/30 border border-oliveAccent/10 transition-all"
+          >
+            Prílohy & Omáčky
+          </button>
+        </div>
+
+        <!-- Menu Cards Grid (8 Items) -->
+        <div
+          id="menu-grid"
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+        >
+          <!-- 1. Classic Smash -->
+          <div
+            class="menu-card bg-white rounded-3xl p-5 border border-oliveAccent/10 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
+            data-category="beef"
+          >
+            <div>
+              <div
+                class="relative h-48 rounded-2xl overflow-hidden mb-4 bg-creamCard"
+              >
+                <img
+                  src="https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=800&q=80"
+                  onerror="
+                    this.src =
+                      'https://placehold.co/600x400/547211/b8de56?text=Classic+Smash'
+                  "
+                  alt="Classic Smash"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <span
+                  class="absolute top-3 left-3 px-3 py-1 rounded-xl bg-oliveAccent text-white text-xs font-bold"
+                  >Hovädzie</span
+                >
+                <span
+                  class="absolute bottom-3 right-3 px-3 py-1 rounded-xl bg-white/95 backdrop-blur text-darkCharcoal font-extrabold text-sm shadow"
+                  >9,50 €</span
+                >
+              </div>
+              <div class="flex items-center justify-between mb-1.5">
+                <h3 class="text-lg font-extrabold text-darkCharcoal">
+                  Classic Smash
+                </h3>
+                <span class="text-xs font-bold text-oliveMedium">160g</span>
+              </div>
+              <p class="text-xs text-darkCharcoal/70 leading-relaxed mb-5">
+                Dvojitý chrumkavý smash plát z 100% hovädzieho mäsa, vyzretý
+                cheddar, kyslé uhorky, červená cibuľa, ľadový šalát a Burger Lab
+                dresing v maslovej brioške.
+              </p>
+            </div>
+            <button
+              onclick="addToCart('Classic Smash', 9.5)"
+              class="w-full py-3 rounded-2xl bg-creamCard hover:bg-limeBright text-darkCharcoal font-bold text-xs border border-oliveAccent/15 transition-colors flex items-center justify-center space-x-2"
+            >
+              <i class="fa-solid fa-plus text-oliveAccent"></i>
+              <span>Pridať do košíka</span>
+            </button>
+          </div>
+
+          <!-- 2. Cheddar Bacon -->
+          <div
+            class="menu-card bg-white rounded-3xl p-5 border border-oliveAccent/10 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
+            data-category="beef"
+          >
+            <div>
+              <div
+                class="relative h-48 rounded-2xl overflow-hidden mb-4 bg-creamCard"
+              >
+                <img
+                  src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?auto=format&fit=crop&w=800&q=80"
+                  onerror="
+                    this.src =
+                      'https://placehold.co/600x400/1a1f14/b8de56?text=Cheddar+Bacon'
+                  "
+                  alt="Cheddar Bacon"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <span
+                  class="absolute top-3 left-3 px-3 py-1 rounded-xl bg-limeBright text-darkCharcoal text-xs font-extrabold"
+                  >TOP Výber</span
+                >
+                <span
+                  class="absolute bottom-3 right-3 px-3 py-1 rounded-xl bg-white/95 backdrop-blur text-darkCharcoal font-extrabold text-sm shadow"
+                  >10,90 €</span
+                >
+              </div>
+              <div class="flex items-center justify-between mb-1.5">
+                <h3 class="text-lg font-extrabold text-darkCharcoal">
+                  Cheddar Bacon
+                </h3>
+                <span class="text-xs font-bold text-oliveMedium">180g</span>
+              </div>
+              <p class="text-xs text-darkCharcoal/70 leading-relaxed mb-5">
+                Šťavnaté hovädzie mäso, dvojitý roztopený cheddar, chrumkavá
+                údená slanina, pomaly karamelizovaná cibuľka a domáci dymový BBQ
+                dresing.
+              </p>
+            </div>
+            <button
+              onclick="addToCart('Cheddar Bacon', 10.9)"
+              class="w-full py-3 rounded-2xl bg-creamCard hover:bg-limeBright text-darkCharcoal font-bold text-xs border border-oliveAccent/15 transition-colors flex items-center justify-center space-x-2"
+            >
+              <i class="fa-solid fa-plus text-oliveAccent"></i>
+              <span>Pridať do košíka</span>
+            </button>
+          </div>
+
+          <!-- 3. Jalapeño Fire -->
+          <div
+            class="menu-card bg-white rounded-3xl p-5 border border-oliveAccent/10 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
+            data-category="beef"
+          >
+            <div>
+              <div
+                class="relative h-48 rounded-2xl overflow-hidden mb-4 bg-creamCard"
+              >
+                <img
+                  src="https://images.unsplash.com/photo-1553979459-d2229ba7433b?auto=format&fit=crop&w=800&q=80"
+                  onerror="
+                    this.src =
+                      'https://placehold.co/600x400/628316/b8de56?text=Jalapeno+Fire'
+                  "
+                  alt="Jalapeño Fire"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <span
+                  class="absolute top-3 left-3 px-3 py-1 rounded-xl bg-amber-500 text-white text-xs font-bold"
+                  >Pikantné 🔥</span
+                >
+                <span
+                  class="absolute bottom-3 right-3 px-3 py-1 rounded-xl bg-white/95 backdrop-blur text-darkCharcoal font-extrabold text-sm shadow"
+                  >10,40 €</span
+                >
+              </div>
+              <div class="flex items-center justify-between mb-1.5">
+                <h3 class="text-lg font-extrabold text-darkCharcoal">
+                  Jalapeño Fire
+                </h3>
+                <span class="text-xs font-bold text-oliveMedium">180g</span>
+              </div>
+              <p class="text-xs text-darkCharcoal/70 leading-relaxed mb-5">
+                Grilované hovädzie mäso, cheddar, nakladané papričky jalapeños,
+                chrumkavá slanina, čerstvý šalát a naša pikantná chilli
+                majonéza.
+              </p>
+            </div>
+            <button
+              onclick="addToCart('Jalapeño Fire', 10.4)"
+              class="w-full py-3 rounded-2xl bg-creamCard hover:bg-limeBright text-darkCharcoal font-bold text-xs border border-oliveAccent/15 transition-colors flex items-center justify-center space-x-2"
+            >
+              <i class="fa-solid fa-plus text-oliveAccent"></i>
+              <span>Pridať do košíka</span>
+            </button>
+          </div>
+
+          <!-- 4. Truffle Brioche -->
+          <div
+            class="menu-card bg-white rounded-3xl p-5 border border-oliveAccent/10 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
+            data-category="beef"
+          >
+            <div>
+              <div
+                class="relative h-48 rounded-2xl overflow-hidden mb-4 bg-creamCard"
+              >
+                <img
+                  src="https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?auto=format&fit=crop&w=800&q=80"
+                  onerror="
+                    this.src =
+                      'https://placehold.co/600x400/547211/ffffff?text=Truffle+Brioche'
+                  "
+                  alt="Truffle Brioche"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <span
+                  class="absolute top-3 left-3 px-3 py-1 rounded-xl bg-oliveAccent text-white text-xs font-bold"
+                  >Gourmet</span
+                >
+                <span
+                  class="absolute bottom-3 right-3 px-3 py-1 rounded-xl bg-white/95 backdrop-blur text-darkCharcoal font-extrabold text-sm shadow"
+                  >11,90 €</span
+                >
+              </div>
+              <div class="flex items-center justify-between mb-1.5">
+                <h3 class="text-lg font-extrabold text-darkCharcoal">
+                  Truffle Brioche
+                </h3>
+                <span class="text-xs font-bold text-oliveMedium">180g</span>
+              </div>
+              <p class="text-xs text-darkCharcoal/70 leading-relaxed mb-5">
+                Hovädzie mäso, jemný syr Gouda, na masle restované šampiňóny,
+                čerstvá rukola a voňavá domáca hľuzovková majonéza v opečenej
+                brioške.
+              </p>
+            </div>
+            <button
+              onclick="addToCart('Truffle Brioche', 11.9)"
+              class="w-full py-3 rounded-2xl bg-creamCard hover:bg-limeBright text-darkCharcoal font-bold text-xs border border-oliveAccent/15 transition-colors flex items-center justify-center space-x-2"
+            >
+              <i class="fa-solid fa-plus text-oliveAccent"></i>
+              <span>Pridať do košíka</span>
+            </button>
+          </div>
+
+          <!-- 5. Crispy Chicken -->
+          <div
+            class="menu-card bg-white rounded-3xl p-5 border border-oliveAccent/10 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
+            data-category="chicken"
+          >
+            <div>
+              <div
+                class="relative h-48 rounded-2xl overflow-hidden mb-4 bg-creamCard"
+              >
+                <img
+                  src="https://images.unsplash.com/photo-1615297928064-24977384d0da?auto=format&fit=crop&w=800&q=80"
+                  onerror="
+                    this.src =
+                      'https://placehold.co/600x400/547211/b8de56?text=Crispy+Chicken'
+                  "
+                  alt="Crispy Chicken"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <span
+                  class="absolute top-3 left-3 px-3 py-1 rounded-xl bg-oliveMedium text-white text-xs font-bold"
+                  >Kuracie</span
+                >
+                <span
+                  class="absolute bottom-3 right-3 px-3 py-1 rounded-xl bg-white/95 backdrop-blur text-darkCharcoal font-extrabold text-sm shadow"
+                  >9,80 €</span
+                >
+              </div>
+              <div class="flex items-center justify-between mb-1.5">
+                <h3 class="text-lg font-extrabold text-darkCharcoal">
+                  Crispy Chicken
+                </h3>
+                <span class="text-xs font-bold text-oliveMedium">170g</span>
+              </div>
+              <p class="text-xs text-darkCharcoal/70 leading-relaxed mb-5">
+                Do zlatista vypražené chrumkavé kuracie prsia, svieži domáci
+                coleslaw šalát, nakladané uhorky a jemná cesnakovo-bylinková
+                majonéza.
+              </p>
+            </div>
+            <button
+              onclick="addToCart('Crispy Chicken', 9.8)"
+              class="w-full py-3 rounded-2xl bg-creamCard hover:bg-limeBright text-darkCharcoal font-bold text-xs border border-oliveAccent/15 transition-colors flex items-center justify-center space-x-2"
+            >
+              <i class="fa-solid fa-plus text-oliveAccent"></i>
+              <span>Pridať do košíka</span>
+            </button>
+          </div>
+
+          <!-- 6. Halloumi Green -->
+          <div
+            class="menu-card bg-white rounded-3xl p-5 border border-oliveAccent/10 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
+            data-category="vege"
+          >
+            <div>
+              <div
+                class="relative h-48 rounded-2xl overflow-hidden mb-4 bg-creamCard"
+              >
+                <img
+                  src="https://images.unsplash.com/photo-1520072959219-c595dc870360?auto=format&fit=crop&w=800&q=80"
+                  onerror="
+                    this.src =
+                      'https://placehold.co/600x400/b2d74b/1a1f14?text=Halloumi+Green'
+                  "
+                  alt="Halloumi Green"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <span
+                  class="absolute top-3 left-3 px-3 py-1 rounded-xl bg-limeAccent text-darkCharcoal text-xs font-extrabold"
+                  >Vegetariánske 🌱</span
+                >
+                <span
+                  class="absolute bottom-3 right-3 px-3 py-1 rounded-xl bg-white/95 backdrop-blur text-darkCharcoal font-extrabold text-sm shadow"
+                  >9,60 €</span
+                >
+              </div>
+              <div class="flex items-center justify-between mb-1.5">
+                <h3 class="text-lg font-extrabold text-darkCharcoal">
+                  Halloumi Green
+                </h3>
+                <span class="text-xs font-bold text-oliveMedium">160g</span>
+              </div>
+              <p class="text-xs text-darkCharcoal/70 leading-relaxed mb-5">
+                Na grile opečený syr Halloumi, čerstvý baby špenát, pečená
+                červená paprika, plátky zrelej paradajky a cesnakovo-bylinkový
+                dresing.
+              </p>
+            </div>
+            <button
+              onclick="addToCart('Halloumi Green', 9.6)"
+              class="w-full py-3 rounded-2xl bg-creamCard hover:bg-limeBright text-darkCharcoal font-bold text-xs border border-oliveAccent/15 transition-colors flex items-center justify-center space-x-2"
+            >
+              <i class="fa-solid fa-plus text-oliveAccent"></i>
+              <span>Pridať do košíka</span>
+            </button>
+          </div>
+
+          <!-- 7. Domáce hranolky -->
+          <div
+            class="menu-card bg-white rounded-3xl p-5 border border-oliveAccent/10 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
+            data-category="sides"
+          >
+            <div>
+              <div
+                class="relative h-48 rounded-2xl overflow-hidden mb-4 bg-creamCard"
+              >
+                <img
+                  src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=800&q=80"
+                  onerror="
+                    this.src =
+                      'https://placehold.co/600x400/1a1f14/b8de56?text=Domace+hranolky'
+                  "
+                  alt="Domáce hranolky"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <span
+                  class="absolute top-3 left-3 px-3 py-1 rounded-xl bg-darkCharcoal text-white text-xs font-bold"
+                  >Príloha</span
+                >
+                <span
+                  class="absolute bottom-3 right-3 px-3 py-1 rounded-xl bg-white/95 backdrop-blur text-darkCharcoal font-extrabold text-sm shadow"
+                  >3,50 €</span
+                >
+              </div>
+              <div class="flex items-center justify-between mb-1.5">
+                <h3 class="text-lg font-extrabold text-darkCharcoal">
+                  Domáce hranolky
+                </h3>
+                <span class="text-xs font-bold text-oliveMedium">200g</span>
+              </div>
+              <p class="text-xs text-darkCharcoal/70 leading-relaxed mb-5">
+                Ručne krájané zemiaky pečené do chrumkava, zľahka posypané
+                vločkovou morskou soľou a čerstvou petržlenovou vňaťou.
+              </p>
+            </div>
+            <button
+              onclick="addToCart('Domáce hranolky', 3.5)"
+              class="w-full py-3 rounded-2xl bg-creamCard hover:bg-limeBright text-darkCharcoal font-bold text-xs border border-oliveAccent/15 transition-colors flex items-center justify-center space-x-2"
+            >
+              <i class="fa-solid fa-plus text-oliveAccent"></i>
+              <span>Pridať do košíka</span>
+            </button>
+          </div>
+
+          <!-- 8. Domáca bylinková majonéza -->
+          <div
+            class="menu-card bg-white rounded-3xl p-5 border border-oliveAccent/10 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
+            data-category="sides"
+          >
+            <div>
+              <div
+                class="relative h-48 rounded-2xl overflow-hidden mb-4 bg-creamCard flex items-center justify-center"
+              >
+                <div
+                  class="w-28 h-28 rounded-3xl bg-limeAccent/40 border-2 border-oliveAccent/20 flex flex-col items-center justify-center text-center p-3 shadow-inner"
+                >
+                  <i
+                    class="fa-solid fa-bowl-food text-oliveAccent text-3xl mb-1.5"
+                  ></i>
+                  <span
+                    class="text-[11px] font-extrabold text-darkCharcoal leading-tight"
+                    >Čerstvo miešaná</span
+                  >
+                </div>
+                <span
+                  class="absolute top-3 left-3 px-3 py-1 rounded-xl bg-oliveAccent text-white text-xs font-bold"
+                  >Omáčka</span
+                >
+                <span
+                  class="absolute bottom-3 right-3 px-3 py-1 rounded-xl bg-white/95 backdrop-blur text-darkCharcoal font-extrabold text-sm shadow"
+                  >1,50 €</span
+                >
+              </div>
+              <div class="flex items-center justify-between mb-1.5">
+                <h3 class="text-lg font-extrabold text-darkCharcoal">
+                  Domáca bylinková majonéza
+                </h3>
+                <span class="text-xs font-bold text-oliveMedium">60ml</span>
+              </div>
+              <p class="text-xs text-darkCharcoal/70 leading-relaxed mb-5">
+                Krémová majonéza z čerstvých vajíčok s jemne nasekanou pažítkou,
+                petržlenom, pečeným cesnakom a kvapkou citrónovej šťavy.
+              </p>
+            </div>
+            <button
+              onclick="addToCart('Domáca bylinková majonéza', 1.5)"
+              class="w-full py-3 rounded-2xl bg-creamCard hover:bg-limeBright text-darkCharcoal font-bold text-xs border border-oliveAccent/15 transition-colors flex items-center justify-center space-x-2"
+            >
+              <i class="fa-solid fa-plus text-oliveAccent"></i>
+              <span>Pridať do košíka</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Prečo Burger Lab? (About Us / Quality Pillars) -->
+    <section id="o-nas" class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div
+          class="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6"
+        >
+          <div class="space-y-3 max-w-2xl">
+            <span
+              class="inline-block px-3.5 py-1 rounded-full bg-limeAccent/40 text-oliveAccent text-xs font-extrabold uppercase tracking-widest"
+              >Naša filozofia</span
+            >
+            <h2
+              class="text-3xl sm:text-4xl font-extrabold text-darkCharcoal tracking-tight"
+            >
+              Prečo Burger Lab?
+            </h2>
+          </div>
+          <p class="text-sm text-darkCharcoal/70 max-w-md">
+            Veríme v poctivé remeslo, transparentný pôvod surovín a zodpovedný
+            prístup k prírode. Preto spolupracujeme so slovenskými dodávateľmi
+            eko surovín, obmedzujeme zbytočný odpad a pri objednávkach používame
+            papierové obaly.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <!-- Pillar 1 -->
+          <div
+            class="rounded-3xl bg-creamCard p-8 border border-oliveAccent/10 relative overflow-hidden group hover:border-oliveAccent/30 transition-all"
+          >
+            <div
+              class="w-14 h-14 rounded-2xl bg-oliveAccent text-limeBright flex items-center justify-center text-2xl font-extrabold mb-6 shadow-md group-hover:scale-105 transition-transform"
+            >
+              <i class="fa-solid fa-drumstick-bite"></i>
+            </div>
+            <h3 class="text-xl font-extrabold text-darkCharcoal mb-3">
+              Eko suroviny zo Slovenska
+            </h3>
+            <p class="text-sm text-darkCharcoal/75 leading-relaxed">
+              Vyberáme kvalitné eko suroviny od slovenských dodávateľov.
+              Uprednostňujeme čerstvé mäso, zeleninu a ďalšie ingrediencie z
+              lokálnych zdrojov, aby sme podporili domácich producentov a
+              obmedzili zbytočnú prepravu.
+            </p>
+          </div>
+
+          <!-- Pillar 2 -->
+          <div
+            class="rounded-3xl bg-creamCard p-8 border border-oliveAccent/10 relative overflow-hidden group hover:border-oliveAccent/30 transition-all"
+          >
+            <div
+              class="w-14 h-14 rounded-2xl bg-limeBright text-darkCharcoal flex items-center justify-center text-2xl font-extrabold mb-6 shadow-md group-hover:scale-105 transition-transform"
+            >
+              <i class="fa-solid fa-bread-slice"></i>
+            </div>
+            <h3 class="text-xl font-extrabold text-darkCharcoal mb-3">
+              Čerstvo pečené briošky každé ráno
+            </h3>
+            <p class="text-sm text-darkCharcoal/75 leading-relaxed">
+              Dokonalý burger stojí na dobrej žemli. Naše čerstvé briošky
+              pripravujeme každý deň v potrebnom množstve, aby sme znižovali
+              prebytky. Suroviny spracúvame bez zbytočného plytvania a využívame
+              ich naplno.
+            </p>
+          </div>
+
+          <!-- Pillar 3 -->
+          <div
+            class="rounded-3xl bg-creamCard p-8 border border-oliveAccent/10 relative overflow-hidden group hover:border-oliveAccent/30 transition-all"
+          >
+            <div
+              class="w-14 h-14 rounded-2xl bg-oliveAccent text-limeBright flex items-center justify-center text-2xl font-extrabold mb-6 shadow-md group-hover:scale-105 transition-transform"
+            >
+              <i class="fa-solid fa-seedling"></i>
+            </div>
+            <h3 class="text-xl font-extrabold text-darkCharcoal mb-3">
+              Domáce omáčky bez polotovarov
+            </h3>
+            <p class="text-sm text-darkCharcoal/75 leading-relaxed">
+              Naše omáčky pripravujeme z eko surovín podľa vlastných receptov.
+              Vyrábame ich v menších dávkach, vďaka čomu máme lepšiu kontrolu
+              nad čerstvosťou a nemusíme používať zbytočné jednorazové porcie
+              ani polotovary.
+            </p>
+          </div>
+
+          <!-- Pillar 4 -->
+          <div
+            class="rounded-3xl bg-creamCard p-8 border border-oliveAccent/10 relative overflow-hidden group hover:border-oliveAccent/30 transition-all"
+          >
+            <div
+              class="w-14 h-14 rounded-2xl bg-limeBright text-darkCharcoal flex items-center justify-center text-2xl font-extrabold mb-6 shadow-md group-hover:scale-105 transition-transform"
+            >
+              <i class="fa-solid fa-handshake-angle"></i>
+            </div>
+            <h3 class="text-xl font-extrabold text-darkCharcoal mb-3">
+              Férová spolupráca
+            </h3>
+            <p class="text-sm text-darkCharcoal/75 leading-relaxed">
+              So slovenskými dodávateľmi budujeme dlhodobé vzťahy. Vďaka tomu
+              vieme lepšie plánovať objednávky, využívať suroviny čerstvé a
+              podporovať zodpovednejšie hospodárenie. Kratšia cesta k nám
+              znamená menej zbytočnej prepravy a čerstvejšie ingrediencie.
+            </p>
+          </div>
+
+          <!-- Pillar 5 -->
+          <div
+            class="rounded-3xl bg-creamCard p-8 border border-oliveAccent/10 relative overflow-hidden group hover:border-oliveAccent/30 transition-all"
+          >
+            <div
+              class="w-14 h-14 rounded-2xl bg-oliveAccent text-limeBright flex items-center justify-center text-2xl font-extrabold mb-6 shadow-md group-hover:scale-105 transition-transform"
+            >
+              <i class="fa-solid fa-recycle"></i>
+            </div>
+            <h3 class="text-xl font-extrabold text-darkCharcoal mb-3">
+              Menej odpadu v kuchyni
+            </h3>
+            <p class="text-sm text-darkCharcoal/75 leading-relaxed">
+              Objednávky surovín plánujeme podľa reálnej spotreby. Zvyšky, ktoré
+              sa dajú bezpečne využiť, spracúvame v ďalšej príprave a odpad
+              triedime podľa možností prevádzky. Každý ušetrený kilogram má
+              zmysel.
+            </p>
+          </div>
+
+          <!-- Pillar 6 -->
+          <div
+            class="rounded-3xl bg-creamCard p-8 border border-oliveAccent/10 relative overflow-hidden group hover:border-oliveAccent/30 transition-all"
+          >
+            <div
+              class="w-14 h-14 rounded-2xl bg-limeBright text-darkCharcoal flex items-center justify-center text-2xl font-extrabold mb-6 shadow-md group-hover:scale-105 transition-transform"
+            >
+              <i class="fa-solid fa-leaf"></i>
+            </div>
+            <h3 class="text-xl font-extrabold text-darkCharcoal mb-3">
+              Zodpovedné rozhodnutia každý deň
+            </h3>
+            <p class="text-sm text-darkCharcoal/75 leading-relaxed">
+              Eko prístup pre nás nie je jednorazová kampaň. Sledujeme spotrebu
+              vody, energií a materiálov, hľadáme úspornejšie postupy a postupne
+              zlepšujeme všetko, čo môžeme ovplyvniť v kuchyni aj pri doručení.
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="mt-8 rounded-3xl bg-darkCharcoal p-6 sm:p-8 text-white border border-oliveAccent/20"
+        >
+          <div class="flex flex-col md:flex-row md:items-center gap-5">
+            <div
+              class="w-12 h-12 rounded-2xl bg-limeBright text-darkCharcoal flex items-center justify-center text-xl shrink-0"
+            >
+              <i class="fa-solid fa-box-open"></i>
+            </div>
+            <div>
+              <h3 class="text-lg font-extrabold text-limeBright">
+                Papierové obaly namiesto plastových
+              </h3>
+              <p class="text-sm text-white/75 leading-relaxed mt-1">
+                Objednávky balíme do papierových obalov namiesto plastových.
+                Používame papierové krabičky, tašky a papierové vrecká podľa
+                typu objednávky. Obaly sú ľahké, pevné a navrhnuté tak, aby
+                udržali burger teplý bez ďalšej plastovej vrstvy. Po použití ich
+                môžete vyprázdniť, stlačiť a vložiť do triedeného papiera.
+                Mastné alebo silno znečistené časti patria do zmesového odpadu.
+                Aj pri donáške tak znižujeme množstvo jednorazového plastu a
+                dávame prednosť materiálu, ktorý sa dá jednoduchšie triediť.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Custom Burger Builder -->
+    <section id="builder" class="py-20 bg-creamCard">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div
+          class="rounded-3xl bg-white border border-oliveAccent/15 shadow-xl overflow-hidden"
+        >
+          <div class="grid grid-cols-1 lg:grid-cols-12">
+            <!-- Left Controls -->
+            <div class="lg:col-span-7 p-6 sm:p-10 space-y-7">
+              <div>
+                <span
+                  class="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-limeAccent/40 text-oliveAccent text-xs font-extrabold uppercase tracking-wider mb-3"
+                >
+                  <i class="fa-solid fa-burger"></i>
+                  <span>Burger na mieru</span>
+                </span>
+                <h2 class="text-3xl font-extrabold text-darkCharcoal">
+                  Vyskladaj si vlastný burger
+                </h2>
+                <p class="text-sm text-darkCharcoal/70 mt-1">
+                  Vyber si žemľu, mäso, syr, obľúbené prílohy aj omáčku a pridaj
+                  svoj burger rovno do košíka.
+                </p>
+              </div>
+
+              <!-- Step 1: Žemľa -->
+              <div class="space-y-2.5">
+                <label
+                  class="block text-xs font-extrabold text-darkCharcoal uppercase tracking-wider"
+                  >1. Vyber si žemľu</label
+                >
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                  <button
+                    type="button"
+                    onclick="selectBun('Maslová brioška', 0, this)"
+                    class="builder-bun-btn p-3 rounded-2xl border-2 border-oliveAccent bg-creamCard text-left transition-all"
+                  >
+                    <div class="font-extrabold text-xs text-darkCharcoal">
+                      Maslová brioška
+                    </div>
+                    <div class="text-[11px] font-bold text-oliveAccent mt-0.5">
+                      V cene
+                    </div>
+                  </button>
+                  <button
+                    type="button"
+                    onclick="selectBun('Celozrnná žemľa', 0.4, this)"
+                    class="builder-bun-btn p-3 rounded-2xl border-2 border-gray-200 bg-white hover:border-limeAccent text-left transition-all"
+                  >
+                    <div class="font-extrabold text-xs text-darkCharcoal">
+                      Celozrnná žemľa
+                    </div>
+                    <div class="text-[11px] font-bold text-oliveAccent mt-0.5">
+                      + 0,40 €
+                    </div>
+                  </button>
+                  <button
+                    type="button"
+                    onclick="selectBun('Bezlepková žemľa', 1.2, this)"
+                    class="builder-bun-btn p-3 rounded-2xl border-2 border-gray-200 bg-white hover:border-limeAccent text-left transition-all"
+                  >
+                    <div class="font-extrabold text-xs text-darkCharcoal">
+                      Bezlepková žemľa
+                    </div>
+                    <div class="text-[11px] font-bold text-oliveAccent mt-0.5">
+                      + 1,20 €
+                    </div>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Step 2: Mäso / Základ -->
+              <div class="space-y-2.5">
+                <label
+                  class="block text-xs font-extrabold text-darkCharcoal uppercase tracking-wider"
+                  >2. Vyber základ</label
+                >
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+                  <button
+                    type="button"
+                    onclick="selectPatty('100% Hovädzie', 7.5, this)"
+                    class="builder-patty-btn p-3 rounded-2xl border-2 border-oliveAccent bg-creamCard text-left transition-all"
+                  >
+                    <div class="font-extrabold text-xs text-darkCharcoal">
+                      100% Hovädzie
+                    </div>
+                    <div class="text-[11px] font-bold text-oliveAccent mt-0.5">
+                      7,50 €
+                    </div>
+                  </button>
+                  <button
+                    type="button"
+                    onclick="selectPatty('Dvojité hovädzie', 9.8, this)"
+                    class="builder-patty-btn p-3 rounded-2xl border-2 border-gray-200 bg-white hover:border-limeAccent text-left transition-all"
+                  >
+                    <div class="font-extrabold text-xs text-darkCharcoal">
+                      Dvojité hovädzie
+                    </div>
+                    <div class="text-[11px] font-bold text-oliveAccent mt-0.5">
+                      9,80 €
+                    </div>
+                  </button>
+                  <button
+                    type="button"
+                    onclick="selectPatty('Chrumkavé kuracie', 7.4, this)"
+                    class="builder-patty-btn p-3 rounded-2xl border-2 border-gray-200 bg-white hover:border-limeAccent text-left transition-all"
+                  >
+                    <div class="font-extrabold text-xs text-darkCharcoal">
+                      Chrumkavé kuracie
+                    </div>
+                    <div class="text-[11px] font-bold text-oliveAccent mt-0.5">
+                      7,40 €
+                    </div>
+                  </button>
+                  <button
+                    type="button"
+                    onclick="selectPatty('Grilovaný Halloumi', 7.4, this)"
+                    class="builder-patty-btn p-3 rounded-2xl border-2 border-gray-200 bg-white hover:border-limeAccent text-left transition-all"
+                  >
+                    <div class="font-extrabold text-xs text-darkCharcoal">
+                      Grilovaný Halloumi
+                    </div>
+                    <div class="text-[11px] font-bold text-oliveAccent mt-0.5">
+                      7,40 €
+                    </div>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Step 3: Syr -->
+              <div class="space-y-2.5">
+                <label
+                  class="block text-xs font-extrabold text-darkCharcoal uppercase tracking-wider"
+                  >3. Vyber si syr</label
+                >
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+                  <button
+                    type="button"
+                    onclick="selectCheese('Cheddar', 1.0, this)"
+                    class="builder-cheese-btn p-3 rounded-2xl border-2 border-oliveAccent bg-creamCard text-left transition-all"
+                  >
+                    <div class="font-extrabold text-xs text-darkCharcoal">
+                      Cheddar
+                    </div>
+                    <div class="text-[11px] font-bold text-oliveAccent mt-0.5">
+                      + 1,00 €
+                    </div>
+                  </button>
+                  <button
+                    type="button"
+                    onclick="selectCheese('Gouda', 1.0, this)"
+                    class="builder-cheese-btn p-3 rounded-2xl border-2 border-gray-200 bg-white hover:border-limeAccent text-left transition-all"
+                  >
+                    <div class="font-extrabold text-xs text-darkCharcoal">
+                      Gouda
+                    </div>
+                    <div class="text-[11px] font-bold text-oliveAccent mt-0.5">
+                      + 1,00 €
+                    </div>
+                  </button>
+                  <button
+                    type="button"
+                    onclick="selectCheese('Niva', 1.1, this)"
+                    class="builder-cheese-btn p-3 rounded-2xl border-2 border-gray-200 bg-white hover:border-limeAccent text-left transition-all"
+                  >
+                    <div class="font-extrabold text-xs text-darkCharcoal">
+                      Niva
+                    </div>
+                    <div class="text-[11px] font-bold text-oliveAccent mt-0.5">
+                      + 1,10 €
+                    </div>
+                  </button>
+                  <button
+                    type="button"
+                    onclick="selectCheese('Bez syra', 0, this)"
+                    class="builder-cheese-btn p-3 rounded-2xl border-2 border-gray-200 bg-white hover:border-limeAccent text-left transition-all"
+                  >
+                    <div class="font-extrabold text-xs text-darkCharcoal">
+                      Bez syra
+                    </div>
+                    <div
+                      class="text-[11px] font-bold text-darkCharcoal/50 mt-0.5"
+                    >
+                      0,00 €
+                    </div>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Step 4: Prílohy a zelenina -->
+              <div class="space-y-2.5">
+                <label
+                  class="block text-xs font-extrabold text-darkCharcoal uppercase tracking-wider"
+                  >4. Pridaj obľúbené prílohy</label
+                >
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                  <label
+                    class="cursor-pointer flex items-center space-x-2.5 p-3 rounded-2xl border border-gray-200 hover:bg-creamCard transition-colors"
+                  >
+                    <input
+                      type="checkbox"
+                      value="Čerstvý šalát & paradajka"
+                      data-price="0.00"
+                      checked
+                      onchange="updateBuilder()"
+                      class="builder-extra w-4 h-4 accent-oliveAccent rounded"
+                    />
+                    <span class="text-xs font-bold text-darkCharcoal"
+                      >Šalát & paradajka (v cene)</span
+                    >
+                  </label>
+                  <label
+                    class="cursor-pointer flex items-center space-x-2.5 p-3 rounded-2xl border border-gray-200 hover:bg-creamCard transition-colors"
+                  >
+                    <input
+                      type="checkbox"
+                      value="Slanina"
+                      data-price="1.40"
+                      onchange="updateBuilder()"
+                      class="builder-extra w-4 h-4 accent-oliveAccent rounded"
+                    />
+                    <span class="text-xs font-bold text-darkCharcoal"
+                      >Slanina (+1,40 €)</span
+                    >
+                  </label>
+                  <label
+                    class="cursor-pointer flex items-center space-x-2.5 p-3 rounded-2xl border border-gray-200 hover:bg-creamCard transition-colors"
+                  >
+                    <input
+                      type="checkbox"
+                      value="Karamelizovaná cibuľka"
+                      data-price="0.90"
+                      onchange="updateBuilder()"
+                      class="builder-extra w-4 h-4 accent-oliveAccent rounded"
+                    />
+                    <span class="text-xs font-bold text-darkCharcoal"
+                      >Karamel. cibuľka (+0,90 €)</span
+                    >
+                  </label>
+                  <label
+                    class="cursor-pointer flex items-center space-x-2.5 p-3 rounded-2xl border border-gray-200 hover:bg-creamCard transition-colors"
+                  >
+                    <input
+                      type="checkbox"
+                      value="Jalapeños"
+                      data-price="0.80"
+                      onchange="updateBuilder()"
+                      class="builder-extra w-4 h-4 accent-oliveAccent rounded"
+                    />
+                    <span class="text-xs font-bold text-darkCharcoal"
+                      >Jalapeños (+0,80 €)</span
+                    >
+                  </label>
+                  <label
+                    class="cursor-pointer flex items-center space-x-2.5 p-3 rounded-2xl border border-gray-200 hover:bg-creamCard transition-colors"
+                  >
+                    <input
+                      type="checkbox"
+                      value="Nakladané uhorky"
+                      data-price="0.60"
+                      onchange="updateBuilder()"
+                      class="builder-extra w-4 h-4 accent-oliveAccent rounded"
+                    />
+                    <span class="text-xs font-bold text-darkCharcoal"
+                      >Nakladané uhorky (+0,60 €)</span
+                    >
+                  </label>
+                </div>
+              </div>
+
+              <!-- Step 5: Omáčka -->
+              <div class="space-y-2.5">
+                <label
+                  class="block text-xs font-extrabold text-darkCharcoal uppercase tracking-wider"
+                  >5. Zvoľ domácu omáčku (v cene)</label
+                >
+                <select
+                  id="builder-sauce"
+                  onchange="updateBuilder()"
+                  class="w-full sm:w-80 px-4 py-3 rounded-2xl bg-creamCard border border-oliveAccent/20 text-sm font-bold text-darkCharcoal focus:outline-none focus:border-oliveAccent"
+                >
+                  <option value="Burger Lab dresing">Burger Lab dresing</option>
+                  <option value="Cesnakovo-bylinková">
+                    Cesnakovo-bylinková
+                  </option>
+                  <option value="BBQ">BBQ</option>
+                  <option value="Pikantná chilli">Pikantná chilli</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Right Live Summary Card -->
+            <div
+              class="lg:col-span-5 bg-oliveAccent text-white p-8 sm:p-10 flex flex-col justify-between relative overflow-hidden"
+            >
+              <div
+                class="absolute -right-12 -top-12 w-56 h-56 bg-limeBright/15 rounded-full blur-2xl pointer-events-none"
+              ></div>
+
+              <div class="space-y-6 relative z-10">
+                <div
+                  class="flex items-center justify-between border-b border-white/15 pb-4"
+                >
+                  <span
+                    class="text-xs font-extrabold uppercase tracking-widest text-limeBright"
+                    >Tvoj vyskladaný burger</span
+                  >
+                  <span
+                    class="px-2.5 py-1 rounded-lg bg-white/10 text-xs font-bold"
+                    >Čerstvo grilované</span
+                  >
+                </div>
+
+                <!-- Layered Burger Visual Stack -->
+                <div class="space-y-2 py-2">
+                  <div
+                    id="summary-bun-top"
+                    class="py-2 px-4 rounded-t-3xl rounded-b-lg bg-amber-300 text-darkCharcoal font-extrabold text-xs text-center shadow"
+                  >
+                    Maslová brioška
+                  </div>
+                  <div
+                    id="summary-sauce-layer"
+                    class="py-1.5 px-4 rounded-xl bg-limeBright text-darkCharcoal font-bold text-xs text-center"
+                  >
+                    Burger Lab dresing
+                  </div>
+                  <div
+                    id="summary-extras-layer"
+                    class="py-2 px-4 rounded-xl bg-white/15 text-white font-semibold text-xs text-center"
+                  >
+                    Čerstvý šalát & paradajka
+                  </div>
+                  <div
+                    id="summary-cheese-layer"
+                    class="py-1.5 px-4 rounded-xl bg-amber-400 text-darkCharcoal font-extrabold text-xs text-center"
+                  >
+                    Syr: Cheddar
+                  </div>
+                  <div
+                    id="summary-patty-layer"
+                    class="py-3 px-4 rounded-2xl bg-amber-900 text-white font-extrabold text-sm text-center border border-amber-700 shadow"
+                  >
+                    100% Hovädzie
+                  </div>
+                  <div
+                    id="summary-bun-bottom"
+                    class="py-2 px-4 rounded-t-lg rounded-b-2xl bg-amber-300 text-darkCharcoal font-extrabold text-xs text-center shadow"
+                  >
+                    Maslová brioška
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="pt-6 border-t border-white/15 space-y-4 relative z-10 mt-6"
+              >
+                <div class="flex items-center justify-between">
+                  <span class="text-sm text-white/80 font-medium"
+                    >Celková cena burgru:</span
+                  >
+                  <span
+                    id="builder-total-price"
+                    class="text-3xl font-extrabold text-limeBright"
+                    >8,50 €</span
+                  >
+                </div>
+                <button
+                  onclick="addCustomBurgerToCart()"
+                  class="w-full py-4 rounded-2xl bg-limeBright text-darkCharcoal font-extrabold text-base hover:bg-white transition-all shadow-lg flex items-center justify-center space-x-2"
+                >
+                  <i class="fa-solid fa-bag-shopping"></i>
+                  <span>Pridať vlastný burger do košíka</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reservation & Contact Section -->
+    <section id="rezervacia" class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          <!-- Left Info: Opening Hours & Location -->
+          <div class="lg:col-span-5 space-y-8">
+            <div class="space-y-3">
+              <span
+                class="inline-block px-3.5 py-1 rounded-full bg-limeAccent/40 text-oliveAccent text-xs font-extrabold uppercase tracking-widest"
+                >Navštívte nás</span
+              >
+              <h2
+                class="text-3xl sm:text-4xl font-extrabold text-darkCharcoal tracking-tight"
+              >
+                Kde nás nájdete
+              </h2>
+              <p class="text-sm text-darkCharcoal/70 leading-relaxed">
+                Príďte si vychutnať čerstvý burger priamo z grilu v príjemnom
+                modernom prostredí alebo si objednajte donášku až k dverám.
+              </p>
+            </div>
+
+            <!-- Address Card -->
+            <div
+              class="p-6 rounded-3xl bg-creamCard border border-oliveAccent/10 space-y-4"
+            >
+              <div class="flex items-start space-x-4">
+                <div
+                  class="w-11 h-11 rounded-2xl bg-oliveAccent text-limeBright flex items-center justify-center shrink-0"
+                >
+                  <i class="fa-solid fa-location-dot text-lg"></i>
+                </div>
+                <div>
+                  <h4 class="font-extrabold text-darkCharcoal">
+                    Adresa prevádzky
+                  </h4>
+                  <p class="text-sm text-darkCharcoal/75 mt-0.5">
+                    Obchodná 48, 811 06 Bratislava
+                  </p>
+                  <p class="text-xs text-oliveMedium font-semibold mt-1">
+                    Parkovanie dostupné v podzemnej garáži (100 m)
+                  </p>
+                </div>
+              </div>
+
+              <div
+                class="flex items-start space-x-4 pt-2 border-t border-oliveAccent/10"
+              >
+                <div
+                  class="w-11 h-11 rounded-2xl bg-limeBright text-darkCharcoal flex items-center justify-center shrink-0"
+                >
+                  <i class="fa-solid fa-phone text-lg"></i>
+                </div>
+                <div>
+                  <h4 class="font-extrabold text-darkCharcoal">
+                    Kontakt & Objednávky
+                  </h4>
+                  <p class="text-sm text-darkCharcoal/75 mt-0.5">
+                    +421 911 234 567
+                  </p>
+                  <p class="text-xs text-darkCharcoal/60 mt-0.5">
+                    ahoj@burgerlab.sk
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Opening Hours -->
+            <div
+              class="p-6 rounded-3xl bg-creamCard border border-oliveAccent/10"
+            >
+              <h4
+                class="font-extrabold text-darkCharcoal mb-4 flex items-center space-x-2"
+              >
+                <i class="fa-regular fa-clock text-oliveAccent"></i>
+                <span>Otváracie hodiny</span>
+              </h4>
+              <ul class="space-y-2.5 text-sm">
+                <li
+                  class="flex justify-between py-1 border-b border-gray-200/60"
+                >
+                  <span class="text-darkCharcoal/75 font-medium"
+                    >Pondelok – Štvrtok</span
+                  >
+                  <span class="font-extrabold text-darkCharcoal"
+                    >11:00 – 22:00</span
+                  >
+                </li>
+                <li
+                  class="flex justify-between py-1 border-b border-gray-200/60"
+                >
+                  <span class="text-darkCharcoal/75 font-medium"
+                    >Piatok – Sobota</span
+                  >
+                  <span class="font-extrabold text-oliveAccent"
+                    >11:00 – 23:30</span
+                  >
+                </li>
+                <li class="flex justify-between py-1">
+                  <span class="text-darkCharcoal/75 font-medium">Nedeľa</span>
+                  <span class="font-extrabold text-darkCharcoal"
+                    >12:00 – 21:00</span
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Right Form: Table Reservation -->
+          <div class="lg:col-span-7">
+            <div
+              class="p-8 sm:p-10 rounded-3xl bg-creamCard border border-oliveAccent/15 shadow-lg"
+            >
+              <h3 class="text-2xl font-extrabold text-darkCharcoal mb-2">
+                Rezervácia stola
+              </h3>
+              <p class="text-sm text-darkCharcoal/70 mb-6">
+                Rezervujte si miesto vopred pre seba, priateľov alebo rodinnú
+                večeru.
+              </p>
+
+              <form
+                id="reservation-form"
+                onsubmit="submitReservation(event)"
+                class="space-y-5"
+              >
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label
+                      class="block text-xs font-extrabold uppercase tracking-wider text-darkCharcoal mb-1.5"
+                      >Meno *</label
+                    >
+                    <input
+                      type="text"
+                      id="res-name"
+                      required
+                      placeholder="Napr. Martin Kováč"
+                      class="w-full px-4 py-3 rounded-2xl bg-white border border-oliveAccent/15 text-sm font-medium focus:outline-none focus:border-oliveAccent"
+                    />
+                  </div>
+                  <div>
+                    <label
+                      class="block text-xs font-extrabold uppercase tracking-wider text-darkCharcoal mb-1.5"
+                      >Telefón *</label
+                    >
+                    <input
+                      type="tel"
+                      id="res-phone"
+                      required
+                      placeholder="+421 900 000 000"
+                      class="w-full px-4 py-3 rounded-2xl bg-white border border-oliveAccent/15 text-sm font-medium focus:outline-none focus:border-oliveAccent"
+                    />
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                  <div>
+                    <label
+                      class="block text-xs font-extrabold uppercase tracking-wider text-darkCharcoal mb-1.5"
+                      >Počet osôb *</label
+                    >
+                    <select
+                      id="res-guests"
+                      required
+                      class="w-full px-4 py-3 rounded-2xl bg-white border border-oliveAccent/15 text-sm font-medium focus:outline-none focus:border-oliveAccent"
+                    >
+                      <option value="2 osoby">2 osoby</option>
+                      <option value="3 osoby">3 osoby</option>
+                      <option value="4 osoby" selected>4 osoby</option>
+                      <option value="6 osôb">6 osôb</option>
+                      <option value="8 a viac osôb">8 a viac osôb</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label
+                      class="block text-xs font-extrabold uppercase tracking-wider text-darkCharcoal mb-1.5"
+                      >Dátum *</label
+                    >
+                    <input
+                      type="date"
+                      id="res-date"
+                      required
+                      class="w-full px-4 py-3 rounded-2xl bg-white border border-oliveAccent/15 text-sm font-medium focus:outline-none focus:border-oliveAccent"
+                    />
+                  </div>
+                  <div>
+                    <label
+                      class="block text-xs font-extrabold uppercase tracking-wider text-darkCharcoal mb-1.5"
+                      >Čas *</label
+                    >
+                    <select
+                      id="res-time"
+                      required
+                      class="w-full px-4 py-3 rounded-2xl bg-white border border-oliveAccent/15 text-sm font-medium focus:outline-none focus:border-oliveAccent"
+                    >
+                      <option value="12:00">12:00</option>
+                      <option value="13:00">13:00</option>
+                      <option value="17:30">17:30</option>
+                      <option value="18:30" selected>18:30</option>
+                      <option value="19:30">19:30</option>
+                      <option value="20:30">20:30</option>
+                    </select>
+                  </div>
+                </div>
+
+                <button
+                  type="submit"
+                  class="w-full py-4 rounded-2xl bg-oliveAccent text-white font-extrabold text-base hover:bg-oliveHover shadow-md hover:shadow-lg transition-all"
+                >
+                  Rezervovať stôl
+                </button>
+              </form>
+
+              <!-- Instant Reservation Confirmation Box -->
+              <div
+                id="reservation-confirmation"
+                class="hidden mt-6 p-5 rounded-2xl bg-limeAccent/35 border border-oliveAccent/25 text-darkCharcoal"
+              >
+                <div class="flex items-start space-x-3">
+                  <div
+                    class="w-8 h-8 rounded-xl bg-oliveAccent text-limeBright flex items-center justify-center shrink-0 mt-0.5"
+                  >
+                    <i class="fa-solid fa-check"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-extrabold text-sm">
+                      Rezervácia bola úspešne potvrdená!
+                    </h4>
+                    <p
+                      id="reservation-summary-text"
+                      class="text-xs text-darkCharcoal/80 mt-1 leading-relaxed"
+                    ></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer
+      class="bg-darkCharcoal text-white py-14 border-t border-oliveAccent/20"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div
+          class="flex flex-col md:flex-row items-center justify-between gap-8 pb-10 border-b border-white/10"
+        >
+          <div class="flex items-center space-x-3">
+            <div
+              class="w-10 h-10 rounded-2xl bg-oliveAccent flex items-center justify-center text-limeBright"
+            >
+              <i class="fa-solid fa-burger text-lg"></i>
+            </div>
+            <span class="text-xl font-extrabold tracking-tight"
+              >BURGER <span class="text-limeBright">LAB</span></span
+            >
+          </div>
+
+          <div
+            class="flex flex-wrap justify-center gap-6 text-sm font-semibold text-white/75"
+          >
+            <a href="#menu" class="hover:text-limeBright transition-colors"
+              >Menu</a
+            >
+            <a href="#o-nas" class="hover:text-limeBright transition-colors"
+              >O nás</a
+            >
+            <a href="#builder" class="hover:text-limeBright transition-colors"
+              >Vlastný burger</a
+            >
+            <a
+              href="#rezervacia"
+              class="hover:text-limeBright transition-colors"
+              >Rezervácia</a
+            >
+          </div>
+
+          <div class="flex items-center space-x-3">
+            <a
+              href="#"
+              aria-label="Instagram"
+              class="w-10 h-10 rounded-2xl bg-white/10 flex items-center justify-center hover:bg-limeBright hover:text-darkCharcoal transition-colors"
+            >
+              <i class="fa-brands fa-instagram text-lg"></i>
+            </a>
+            <a
+              href="#"
+              aria-label="Facebook"
+              class="w-10 h-10 rounded-2xl bg-white/10 flex items-center justify-center hover:bg-limeBright hover:text-darkCharcoal transition-colors"
+            >
+              <i class="fa-brands fa-facebook-f"></i>
+            </a>
+            <a
+              href="#"
+              aria-label="TikTok"
+              class="w-10 h-10 rounded-2xl bg-white/10 flex items-center justify-center hover:bg-limeBright hover:text-darkCharcoal transition-colors"
+            >
+              <i class="fa-brands fa-tiktok"></i>
+            </a>
+          </div>
+        </div>
+
+        <div
+          class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/60"
+        >
+          <p>&copy; 2026 Burger Lab. Všetky práva vyhradené.</p>
+          <p class="font-extrabold tracking-widest text-limeBright text-sm">
+            WWW.BURGERLAB.SK
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Interactive Slide-Over Shopping Cart Drawer -->
+    <div id="cart-modal" class="fixed inset-0 z-50 hidden">
+      <div
+        class="absolute inset-0 bg-darkCharcoal/60 backdrop-blur-sm transition-opacity"
+        onclick="toggleCart()"
+      ></div>
+      <div class="absolute inset-y-0 right-0 max-w-full flex pl-10">
+        <div
+          class="w-screen max-w-md bg-white shadow-2xl flex flex-col rounded-l-3xl overflow-hidden"
+        >
+          <!-- Cart Header -->
+          <div
+            class="p-6 bg-oliveAccent text-white flex items-center justify-between"
+          >
+            <div class="flex items-center space-x-3">
+              <div
+                class="w-9 h-9 rounded-xl bg-white/15 flex items-center justify-center text-limeBright"
+              >
+                <i class="fa-solid fa-bag-shopping"></i>
+              </div>
+              <div>
+                <h3 class="font-extrabold text-lg leading-none">
+                  Vaša objednávka
+                </h3>
+                <span class="text-xs text-limeBright font-medium"
+                  >Donáška alebo osobný odber</span
+                >
+              </div>
+            </div>
+            <button
+              onclick="toggleCart()"
+              class="w-9 h-9 rounded-xl bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors"
+              aria-label="Zavrieť košík"
+            >
+              <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+          </div>
+
+          <!-- Delivery Type Switch -->
+          <div
+            class="px-6 pt-4 pb-2 bg-creamCard border-b border-oliveAccent/10"
+          >
+            <div
+              class="grid grid-cols-2 gap-2 p-1 rounded-2xl bg-white border border-oliveAccent/10"
+            >
+              <button
+                type="button"
+                id="mode-delivery"
+                onclick="setOrderMode('delivery')"
+                class="py-2 rounded-xl text-xs font-extrabold bg-limeBright text-darkCharcoal transition-all"
+              >
+                <i class="fa-solid fa-motorcycle mr-1"></i> Donáška
+              </button>
+              <button
+                type="button"
+                id="mode-pickup"
+                onclick="setOrderMode('pickup')"
+                class="py-2 rounded-xl text-xs font-bold text-darkCharcoal/70 hover:text-darkCharcoal transition-all"
+              >
+                <i class="fa-solid fa-store mr-1"></i> Osobný odber
+              </button>
+            </div>
+          </div>
+
+          <!-- Cart Items List -->
+          <div id="cart-items" class="flex-1 overflow-y-auto p-6 space-y-3">
+            <!-- Rendered dynamically via JS -->
+          </div>
+
+          <!-- Cart Footer -->
+          <div
+            class="p-6 bg-creamCard border-t border-oliveAccent/15 space-y-4"
+          >
+            <div class="space-y-1.5 text-sm">
+              <div class="flex justify-between text-darkCharcoal/70">
+                <span>Medzisúčet:</span>
+                <span id="cart-subtotal" class="font-bold text-darkCharcoal"
+                  >0,00 €</span
+                >
+              </div>
+              <div class="flex justify-between text-darkCharcoal/70">
+                <span>Balné & Doprava:</span>
+                <span id="cart-delivery-fee" class="font-bold text-oliveAccent"
+                  >Zdarma</span
+                >
+              </div>
+              <div
+                class="flex justify-between items-center text-lg font-extrabold text-darkCharcoal pt-2 border-t border-oliveAccent/10"
+              >
+                <span>Spolu k úhrade:</span>
+                <span id="cart-total" class="text-oliveAccent text-xl"
+                  >0,00 €</span
+                >
+              </div>
+            </div>
+
+            <button
+              onclick="checkout()"
+              class="w-full py-4 rounded-2xl bg-oliveAccent text-white font-extrabold text-base hover:bg-oliveHover shadow-lg transition-all flex items-center justify-center space-x-2"
+            >
+              <span>Dokončiť objednávku</span>
+              <i class="fa-solid fa-arrow-right text-limeBright"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Checkout Confirmation Modal -->
+    <div
+      id="checkout-modal"
+      class="fixed inset-0 z-50 hidden flex items-center justify-center p-4"
+    >
+      <div
+        class="absolute inset-0 bg-darkCharcoal/60 backdrop-blur-sm"
+        onclick="closeCheckoutModal()"
+      ></div>
+      <div
+        class="relative bg-white rounded-3xl max-w-md w-full p-8 text-center space-y-5 shadow-2xl border border-oliveAccent/15"
+      >
+        <div
+          class="w-16 h-16 mx-auto rounded-3xl bg-limeBright text-darkCharcoal flex items-center justify-center text-3xl shadow-md"
+        >
+          <i class="fa-solid fa-check"></i>
+        </div>
+        <div class="space-y-2">
+          <span
+            class="inline-block px-3 py-1 rounded-full bg-creamCard text-oliveAccent text-xs font-extrabold uppercase tracking-wider"
+            >Objednávka prijatá</span
+          >
+          <h3 class="text-2xl font-extrabold text-darkCharcoal">
+            Ďakujeme za objednávku!
+          </h3>
+          <p class="text-sm text-darkCharcoal/75 leading-relaxed">
+            Vaše burgre práve kladieme na rozohriaty gril. Čerstvo upečenú
+            objednávku očakávajte do <strong>25 – 35 minút</strong>.
+          </p>
+        </div>
+        <button
+          onclick="closeCheckoutModal()"
+          class="w-full py-3.5 rounded-2xl bg-oliveAccent text-white font-extrabold text-sm hover:bg-oliveHover transition-all"
+        >
+          Späť na stránku
+        </button>
+      </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div
+      id="toast"
+      class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 bg-darkCharcoal text-white px-5 py-3.5 rounded-2xl shadow-2xl border border-limeBright/30 flex items-center space-x-3"
+    >
+      <div
+        class="w-7 h-7 rounded-xl bg-limeBright text-darkCharcoal flex items-center justify-center shrink-0"
+      >
+        <i class="fa-solid fa-check text-xs font-bold"></i>
+      </div>
+      <span id="toast-msg" class="font-bold text-sm"
+        >Pridané do objednávky</span
+      >
+    </div>
+    <!-- Application Logic -->
+    <script src="new.js"></script>
+  </body>
+</html>

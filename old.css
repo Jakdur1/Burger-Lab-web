@@ -1,0 +1,17 @@
+/* Custom subtle animations and scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f8faf5;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #b2d74b;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #547211;
+}
