@@ -1694,6 +1694,42 @@
           <div
             class="p-6 bg-creamCard border-t border-oliveAccent/15 space-y-4"
           >
+            <fieldset class="space-y-2">
+              <legend
+                class="text-sm font-extrabold text-darkCharcoal flex items-center gap-2"
+              >
+                <i class="fa-solid fa-utensils text-oliveAccent"></i>
+                Príbor k objednávke
+              </legend>
+              <label
+                class="flex items-center gap-3 p-3 rounded-2xl bg-white border border-oliveAccent/15 cursor-pointer"
+              >
+                <input
+                  type="radio"
+                  name="cutlery-choice"
+                  value="Drevený príbor"
+                  checked
+                  class="w-4 h-4 accent-oliveAccent"
+                />
+                <span class="text-xs font-bold text-darkCharcoal">
+                  Chcem drevený príbor
+                </span>
+              </label>
+              <label
+                class="flex items-center gap-3 p-3 rounded-2xl bg-white border border-oliveAccent/15 cursor-pointer"
+              >
+                <input
+                  type="radio"
+                  name="cutlery-choice"
+                  value="Bez príboru – mám vlastný"
+                  class="w-4 h-4 accent-oliveAccent"
+                />
+                <span class="text-xs font-bold text-darkCharcoal">
+                  Nepotrebujem, mám vlastný
+                </span>
+              </label>
+            </fieldset>
+
             <div class="space-y-1.5 text-sm">
               <div class="flex justify-between text-darkCharcoal/70">
                 <span>Medzisúčet:</span>
@@ -1757,6 +1793,8 @@
           <p class="text-sm text-darkCharcoal/75 leading-relaxed">
             Vaše burgre práve kladieme na rozohriaty gril. Čerstvo upečenú
             objednávku očakávajte do <strong>25 – 35 minút</strong>.
+            <br />
+            <span id="checkout-cutlery-summary"></span>
           </p>
         </div>
         <button

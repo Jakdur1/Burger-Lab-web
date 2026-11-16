@@ -16,6 +16,7 @@ let builderState = {
 
 let cart = [];
 let orderMode = "delivery";
+let cutleryPreference = "Drevený príbor";
 let toastTimer;
 
 function filterMenu(category) {
@@ -176,6 +177,14 @@ function checkout() {
     showToast("Najprv pridajte burger do košíka.");
     return;
   }
+  const selectedCutlery = document.querySelector(
+    'input[name="cutlery-choice"]:checked',
+  );
+  cutleryPreference = selectedCutlery
+    ? selectedCutlery.value
+    : "Bez príboru – mám vlastný";
+  document.getElementById("checkout-cutlery-summary").textContent =
+    `Príbor: ${cutleryPreference}.`;
   toggleCart();
   cart = [];
   updateCartUI();
@@ -222,5 +231,10 @@ document.querySelectorAll(".builder-extra").forEach((checkbox) => {
   checkbox.addEventListener("change", updateBuilder);
 });
 document.getElementById("builder-sauce").addEventListener("change", updateBuilder);
+document.querySelectorAll('input[name="cutlery-choice"]').forEach((choice) => {
+  choice.addEventListener("change", (event) => {
+    cutleryPreference = event.target.value;
+  });
+});
 updateBuilder();
 updateCartUI();
