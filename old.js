@@ -5,7 +5,7 @@ function formatEur(num) {
 let builderState = {
   bunName: "Maslová brioška",
   bunPrice: 0,
-  pattyName: "100% Hovädzie",
+  pattyName: "Hovädzie",
   pattyPrice: 7.5,
   cheeseName: "Cheddar",
   cheesePrice: 1,
@@ -28,7 +28,9 @@ function filterMenu(category) {
 
   document.querySelectorAll(".menu-card").forEach((card) => {
     card.style.display =
-      category === "all" || card.dataset.category === category ? "flex" : "none";
+      category === "all" || card.dataset.category === category
+        ? "flex"
+        : "none";
   });
 }
 
@@ -48,21 +50,33 @@ function selectBun(name, price, button) {
 }
 
 function selectPatty(name, price, button) {
-  const selected = selectBuilderOption(".builder-patty-btn", name, price, button);
+  const selected = selectBuilderOption(
+    ".builder-patty-btn",
+    name,
+    price,
+    button,
+  );
   builderState.pattyName = selected.name;
   builderState.pattyPrice = selected.price;
   updateBuilder();
 }
 
 function selectCheese(name, price, button) {
-  const selected = selectBuilderOption(".builder-cheese-btn", name, price, button);
+  const selected = selectBuilderOption(
+    ".builder-cheese-btn",
+    name,
+    price,
+    button,
+  );
   builderState.cheeseName = selected.name;
   builderState.cheesePrice = selected.price;
   updateBuilder();
 }
 
 function updateBuilder() {
-  const selectedExtras = [...document.querySelectorAll(".builder-extra:checked")];
+  const selectedExtras = [
+    ...document.querySelectorAll(".builder-extra:checked"),
+  ];
   const extrasTotal = selectedExtras.reduce(
     (total, extra) => total + Number(extra.dataset.price),
     0,
@@ -78,13 +92,16 @@ function updateBuilder() {
     extrasTotal;
 
   document.getElementById("summary-bun-top").textContent = builderState.bunName;
-  document.getElementById("summary-bun-bottom").textContent = builderState.bunName;
-  document.getElementById("summary-patty-layer").textContent = builderState.pattyName;
+  document.getElementById("summary-bun-bottom").textContent =
+    builderState.bunName;
+  document.getElementById("summary-patty-layer").textContent =
+    builderState.pattyName;
   document.getElementById("summary-cheese-layer").textContent =
     builderState.cheeseName === "Bez syra"
       ? "Bez syra"
       : `Syr: ${builderState.cheeseName}`;
-  document.getElementById("summary-sauce-layer").textContent = builderState.sauce;
+  document.getElementById("summary-sauce-layer").textContent =
+    builderState.sauce;
   document.getElementById("summary-extras-layer").textContent =
     builderState.extras.length > 0
       ? builderState.extras.join(", ")
@@ -113,15 +130,19 @@ function setOrderMode(mode) {
   orderMode = mode;
   const delivery = document.getElementById("mode-delivery");
   const pickup = document.getElementById("mode-pickup");
-  const active = "py-2 rounded-xl text-xs font-extrabold bg-limeBright text-darkCharcoal transition-all";
-  const inactive = "py-2 rounded-xl text-xs font-bold text-darkCharcoal/70 hover:text-darkCharcoal transition-all";
+  const active =
+    "py-2 rounded-xl text-xs font-extrabold bg-limeBright text-darkCharcoal transition-all";
+  const inactive =
+    "py-2 rounded-xl text-xs font-bold text-darkCharcoal/70 hover:text-darkCharcoal transition-all";
   delivery.className = mode === "delivery" ? active : inactive;
   pickup.className = mode === "pickup" ? active : inactive;
   updateCartUI();
 }
 
 function addToCart(name, price) {
-  const existing = cart.find((item) => item.name === name && item.price === price);
+  const existing = cart.find(
+    (item) => item.name === name && item.price === price,
+  );
   if (existing) {
     existing.qty += 1;
   } else {
@@ -159,7 +180,8 @@ function updateCartUI() {
   } else {
     itemsContainer.innerHTML = cart
       .map(
-        (item, index) => `<div class="p-4 rounded-2xl bg-creamCard border border-oliveAccent/10 flex items-start justify-between gap-3"><div class="min-w-0 flex-1"><h4 class="font-extrabold text-darkCharcoal text-sm leading-snug">${item.name}</h4><span class="text-xs font-bold text-oliveAccent mt-1 inline-block">${formatEur(item.price)} / ks</span></div><div class="flex items-center space-x-1.5 shrink-0"><button onclick="changeQty(${index}, -1)" class="w-7 h-7 rounded-xl bg-white border border-oliveAccent/20 text-darkCharcoal font-extrabold text-xs hover:bg-limeAccent/40 transition-colors">-</button><span class="w-5 text-center text-xs font-extrabold text-darkCharcoal">${item.qty}</span><button onclick="changeQty(${index}, 1)" class="w-7 h-7 rounded-xl bg-white border border-oliveAccent/20 text-darkCharcoal font-extrabold text-xs hover:bg-limeAccent/40 transition-colors">+</button><button onclick="removeFromCart(${index})" aria-label="Odstrániť položku" class="w-7 h-7 rounded-xl bg-white border border-red-200 text-red-600 text-xs hover:bg-red-50 transition-colors ml-1"><i class="fa-solid fa-trash-can"></i></button></div></div>`,
+        (item, index) =>
+          `<div class="p-4 rounded-2xl bg-creamCard border border-oliveAccent/10 flex items-start justify-between gap-3"><div class="min-w-0 flex-1"><h4 class="font-extrabold text-darkCharcoal text-sm leading-snug">${item.name}</h4><span class="text-xs font-bold text-oliveAccent mt-1 inline-block">${formatEur(item.price)} / ks</span></div><div class="flex items-center space-x-1.5 shrink-0"><button onclick="changeQty(${index}, -1)" class="w-7 h-7 rounded-xl bg-white border border-oliveAccent/20 text-darkCharcoal font-extrabold text-xs hover:bg-limeAccent/40 transition-colors">-</button><span class="w-5 text-center text-xs font-extrabold text-darkCharcoal">${item.qty}</span><button onclick="changeQty(${index}, 1)" class="w-7 h-7 rounded-xl bg-white border border-oliveAccent/20 text-darkCharcoal font-extrabold text-xs hover:bg-limeAccent/40 transition-colors">+</button><button onclick="removeFromCart(${index})" aria-label="Odstrániť položku" class="w-7 h-7 rounded-xl bg-white border border-red-200 text-red-600 text-xs hover:bg-red-50 transition-colors ml-1"><i class="fa-solid fa-trash-can"></i></button></div></div>`,
       )
       .join("");
   }
@@ -194,7 +216,9 @@ function submitReservation(event) {
   const time = document.getElementById("res-time").value;
   document.getElementById("reservation-summary-text").textContent =
     `Ďakujeme, ${name}. Rezervovali sme stôl pre ${guests} na dátum ${date} o ${time}.`;
-  document.getElementById("reservation-confirmation").classList.remove("hidden");
+  document
+    .getElementById("reservation-confirmation")
+    .classList.remove("hidden");
   showToast("Rezervácia stola bola potvrdená!");
   event.target.reset();
 }
@@ -221,6 +245,8 @@ document.querySelectorAll(".mobile-link").forEach((link) => {
 document.querySelectorAll(".builder-extra").forEach((checkbox) => {
   checkbox.addEventListener("change", updateBuilder);
 });
-document.getElementById("builder-sauce").addEventListener("change", updateBuilder);
+document
+  .getElementById("builder-sauce")
+  .addEventListener("change", updateBuilder);
 updateBuilder();
 updateCartUI();
